@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button } from 'antd';
+import {  hashHistory } from 'react-router';
 
 
 class LoginForm extends Component {
@@ -10,9 +11,13 @@ class LoginForm extends Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                // 这里可以对得到的值做验证
                 console.log('Received values of form: ', values);
+                // 跳转
+                hashHistory.push('/admin');
             }
         });
+
     };
     render() {
         const { getFieldDecorator } = this.props.form;
