@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Layout, Menu, Icon } from 'antd';
 import logo from './logo/logo.png'
 import './admin.less'
-import { Link } from 'react-router'
+import { Link, hashHistory } from 'react-router'
+import memoryUtils from '../../utils/memoryUtils'
 
-const { Header, Sider, Content } = Layout;
+
+const { Header, Sider, Content, Footer } = Layout;
 class Admin extends Component {
   state = {
     collapsed: false,
@@ -17,8 +19,15 @@ class Admin extends Component {
   };
 
   render() {
+    const user = memoryUtils.user
+    console.log(user);
+    
+    if (!user) {
+      hashHistory.replace('/')
+      // username = user
+    }
     return (
-      <Layout className="admin">
+      <Layout className="admin" style={{ height: "100%" }}>
         <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ height: "100%" }} >
           <img src={logo} alt="pig" style={{ width: "200px", height: '80px' }} />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className="menuLink">
@@ -37,12 +46,21 @@ class Admin extends Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', padding: 0 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-              onClick={this.toggle}
-            />
+          <Header className="myHeader" >
+            <div className="topDiv">
+              <Icon
+                className="trigger"
+                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+                onClick={this.toggle}
+                style={{ paddingLeft: "50px",marginTop:"10px" }}
+              />
+              <div className="rightContent">
+                <p>您好,管理员</p>
+                <p>{}</p>
+              </div>
+            </div>
+            <div className="bottomDiv">
+            </div>
           </Header>
           <Content
             style={{
@@ -54,6 +72,7 @@ class Admin extends Component {
           >
             {this.props.children}
           </Content>
+          <Footer>111</Footer>
         </Layout>
       </Layout>
     );

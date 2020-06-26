@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import './login.less'
 import LoginForm from './loginForm/LoginForm'
+import memoryUtils from '../../utils/memoryUtils'
+import { hashHistory } from 'react-router'
 
 class Login extends Component {
     state = {};
+    componentDidMount() {
+        const user = memoryUtils.user
+        if (user) {
+            hashHistory.replace('/admin')
+        }
+    }
     render() {
         return (
             <div className="login">
