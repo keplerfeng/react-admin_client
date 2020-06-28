@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Icon } from 'antd';
-import logo from './logo/logo.png'
+import { Layout, Icon } from 'antd';
 import './admin.less'
-import { Link, hashHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import memoryUtils from '../../utils/memoryUtils'
-
+import LeftNav from './leftNav/LeftNav'
+import MyHeader from './header/MyHeader'
 
 const { Header, Sider, Content, Footer } = Layout;
 class Admin extends Component {
@@ -21,46 +21,28 @@ class Admin extends Component {
   render() {
     const user = memoryUtils.user
     console.log(user);
-    
-    if (!user) {
-      hashHistory.replace('/')
+
+    if (JSON.stringify(user) === '{}') {
+      console.log(1111);
+
+      hashHistory.replace('/login')
       // username = user
     }
+
     return (
-      <Layout className="admin" style={{ height: "100%" }}>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ height: "100%" }} >
-          <img src={logo} alt="pig" style={{ width: "200px", height: '80px' }} />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className="menuLink">
-            <Menu.Item key="1">
-              <Icon type="user" />
-              <Link to="/admin/start">开始吧</Link>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <Icon type="video-camera" />
-              <Link to="/admin/myecharts">图表</Link>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <Icon type="upload" />
-              <Link to="/admin/whatever">随便写写</Link>
-            </Menu.Item>
-          </Menu>
+      <Layout className="admin" style={{ minHeight: '100vh' }}>
+        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+          <LeftNav />
         </Sider>
         <Layout>
-          <Header className="myHeader" >
-            <div className="topDiv">
-              <Icon
-                className="trigger"
-                type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
-                onClick={this.toggle}
-                style={{ paddingLeft: "50px",marginTop:"10px" }}
-              />
-              <div className="rightContent">
-                <p>您好,管理员</p>
-                <p>{}</p>
-              </div>
-            </div>
-            <div className="bottomDiv">
-            </div>
+          <Header className="adHeader" >
+            <Icon
+              className="trigger"
+              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+              style={{ paddingLeft: "30px", marginTop: "10px" }}
+            />
+            <MyHeader></MyHeader>
           </Header>
           <Content
             style={{

@@ -7,11 +7,12 @@ import { hashHistory } from 'react-router'
 class Login extends Component {
     state = {};
     componentDidMount() {
-        const user = memoryUtils.user
-        if (user) {
-            hashHistory.replace('/admin')
+        const user = memoryUtils.user        
+        if (JSON.stringify(user) !== '{}') {
+            hashHistory.replace('/admin/start')
         }
     }
+
     render() {
         return (
             <div className="login">

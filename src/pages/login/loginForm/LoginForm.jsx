@@ -8,7 +8,6 @@ import localStorageUtil from '../../../utils/localStorageUtil'
 
 class LoginForm extends Component {
     state = {
-
     }
     handleSubmit = e => {
         e.preventDefault();
@@ -18,13 +17,17 @@ class LoginForm extends Component {
                 var { username, password } = values
                 userLogin({ username, password }).then((res) => {
                     // 这里可以对得到的值做验证
-                    memoryUtils.user = res.data
-                    localStorageUtil.saveUser(memoryUtils.user)
+                    let user = memoryUtils.user
+                    user = res.data
+                    Object.assign(user, { username, password })
+                    console.log(user);
+
+                    localStorageUtil.saveUser(user)
                     console.log(localStorageUtil.getUser());
 
                     // 跳转
                     hashHistory.replace('/admin');
-                    message.success('登录成功,你好' + username )
+                    message.success('登录成功,你好' + username)
                 })
             } else {
                 console.log("检验失败");
