@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './linkButton.less'
 
+import { Button } from 'antd';
+
 class LinkButton extends Component {
     state = {}
-    render() {
 
+
+    render() {
         return (
-            <button {...this.props} className="linkButton"></button>
+            <Button {...this.props} className="linkButton"></Button>
         );
     }
 }

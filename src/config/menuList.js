@@ -10,13 +10,13 @@ const menuList = [
         icon: 'appstore',
         children: [
             {
-                title: '品类管理',
-                key: '/products/category',
+                title: '商品管理',
+                key: '/products/product',
                 icon: 'home',
             },
             {
-                title: '商品管理',
-                key: '/products/product',
+                title: '品类管理',
+                key: '/products/category',
                 icon: 'home',
             },
         ]

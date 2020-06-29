@@ -13,7 +13,7 @@ import Product from './pages/product/Product.jsx'
 import PmMap from './pages/myEcharts/PmMap'
 import MyEcharts from './pages/myEcharts/MyEcharts'
 import Round from './pages/myEcharts/Round'
-
+import ProductDetail from './pages/product/myTable/productDetail/ProductDetail'
 
 class App extends Component {
     state = {}
@@ -38,7 +38,9 @@ class App extends Component {
                         <Route path='/products'>
                             <IndexRoute component={Category}></IndexRoute>
                             <Route path='category' component={Category}></Route>
-                            <Route path='product' component={Product}></Route>
+                            <Route path='product' component={Product}>
+                            </Route>
+                            <Route path='detail' component={ProductDetail}></Route>
                         </Route>
                         <Route path='whatever' component={Whatever}></Route>
                     </Route>

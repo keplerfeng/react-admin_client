@@ -7,6 +7,9 @@ import { getWeather } from '../../../network/admin/header/weather'
 import { formatDataTime } from '../../../utils/commonUtil'
 import localStorageUtil from '../../../utils/localStorageUtil'
 import LinkButton from '../../../components/linkButton/LinkButton'
+import { Modal } from 'antd';
+const { confirm } = Modal;
+
 class MyHeader extends Component {
     state = {
         currentTime: formatDataTime(new Date()),
@@ -40,13 +43,29 @@ class MyHeader extends Component {
 
     weatherNow = async () => {
         const result = await getWeather()
-        console.log(result);
-
+        const relResult = result.data.result
+        console.log(relResult);
+        this.setState({
+            city: relResult.location.city,
+            weather: relResult.now.text
+        })
     }
+
+
+
     layout = () => {
-        memoryUtils.user = {}
-        localStorageUtil.removeUser()
-        hashHistory.replace('/login')
+        confirm({
+            title: '是否退出登录?',
+            onOk() {
+                console.log('确认');
+                memoryUtils.user = {}
+                localStorageUtil.removeUser()
+                hashHistory.replace('/login')
+            },
+            onCancel() {
+                console.log('取消');
+            },
+        });
     }
 
     componentDidMount() {
@@ -74,8 +93,8 @@ class MyHeader extends Component {
                 <div className="bottomDiv">
                     <div className='displayName'>{title}</div>
                     <div className='displayTime'>
-                        <span>{currentTime}</span>
-                        <span>{city}</span>
+                        <span>{currentTime}</span>&nbsp;&nbsp;&nbsp;
+                        <span>{city}</span>&nbsp;&nbsp;
                         <span>{weather}</span>
                     </div>
                 </div>
