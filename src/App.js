@@ -10,6 +10,10 @@ import Bar from './pages/myEcharts/Bar.jsx'
 import Pie from './pages/myEcharts/Pie.jsx'
 import Category from './pages/category/Category.jsx'
 import Product from './pages/product/Product.jsx'
+import PmMap from './pages/myEcharts/PmMap'
+import MyEcharts from './pages/myEcharts/MyEcharts'
+import Round from './pages/myEcharts/Round'
+
 
 class App extends Component {
     state = {}
@@ -27,6 +31,9 @@ class App extends Component {
                             <Route path='line' component={Line}></Route>
                             <Route path='bar' component={Bar}></Route>
                             <Route path='pie' component={Pie}></Route>
+                            <Route path='myecharts' component={MyEcharts}></Route>
+                            <Route path='round' component={Round}></Route>
+                            <Route path='pmmap' component={PmMap}></Route>
                         </Route>
                         <Route path='/products'>
                             <IndexRoute component={Category}></IndexRoute>

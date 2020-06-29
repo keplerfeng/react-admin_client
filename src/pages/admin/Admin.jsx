@@ -22,10 +22,8 @@ class Admin extends Component {
     const user = memoryUtils.user
     console.log(user);
 
-    if (JSON.stringify(user) === '{}') {
-      console.log(1111);
-
-      hashHistory.replace('/login')
+    if (!user) {
+      hashHistory.replace('/')
       // username = user
     }
 
@@ -49,7 +47,8 @@ class Admin extends Component {
               margin: '24px 16px',
               padding: 24,
               background: '#fff',
-              minHeight: 280,
+
+
             }}
           >
             {this.props.children}

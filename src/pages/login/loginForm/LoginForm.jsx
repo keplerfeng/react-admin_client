@@ -21,10 +21,8 @@ class LoginForm extends Component {
                     user = res.data
                     Object.assign(user, { username, password })
                     console.log(user);
-
                     localStorageUtil.saveUser(user)
                     console.log(localStorageUtil.getUser());
-
                     // 跳转
                     hashHistory.replace('/admin');
                     message.success('登录成功,你好' + username)
