@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag, Card } from 'antd';
 import { reqProducts } from '../../../network/product/product'
 import LinkButton from '../../../components/linkButton/LinkButton'
 import { hashHistory } from 'react-router'
+import UpdateProductModal from '../../../components/commonModal/UpdateProductModal'
 
 class MyTable extends Component {
     state = {
-        data: []
+        data: [],
+        loading: false,
+        visible: false,
     }
 
     getDetail = () => {
         hashHistory.push('/products/detail')
     }
+
+
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    };
+
+    handleOk = () => {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false, visible: false });
+        }, 0);
+    };
+
+    handleCancel = () => {
+        this.setState({ visible: false });
+        console.log(1111);
+
+    };
+
 
     columns = [
         {
@@ -55,7 +79,7 @@ class MyTable extends Component {
             key: 'action',
             render: (text, record) => (
                 <span>
-                    <LinkButton>修 改{record.name}</LinkButton>
+                    <LinkButton onClick={this.showModal}>修 改{record.name}</LinkButton>
                     <Divider type="vertical" />
                     <LinkButton>删除</LinkButton>
                 </span>
@@ -80,10 +104,20 @@ class MyTable extends Component {
 
 
     render() {
-        const { data } = this.state
+        const { data, visible } = this.state
         console.log(data);
         return (
-            <Table columns={this.columns} dataSource={data} />
+            <div>
+                <Card title="商品管理" extra={<LinkButton style={{ backgroundColor: 'greenyellow' }}>添加</LinkButton>}>
+                    <Table columns={this.columns} dataSource={data} />
+                </Card>
+                <UpdateProductModal
+                    visible={visible}
+                    title="Title"
+                    onOk={this.handleOk}
+                    onCancel={this.handleCancel}
+                />
+            </div>
         );
     }
 }

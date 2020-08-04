@@ -4,7 +4,7 @@ import ReactEcharts from 'echarts-for-react';
 
 
 import jsonp from "jsonp" // 接口jsonp实现跨域
-import "./utils/china.js"
+import  "./utils/china.js"
 
 
 export default class MyEcharts extends Component {
