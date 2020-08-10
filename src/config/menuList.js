@@ -65,6 +65,11 @@ const menuList = [
         key: '/admin/whatever',
         icon: 'home',
     },
+    {
+        title: '布局练习',
+        key: '/admin/layout',
+        icon: 'home',
+    }
 ]
 
 export default menuList

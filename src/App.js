@@ -14,7 +14,7 @@ import PmMap from './pages/myEcharts/PmMap'
 import MyEcharts from './pages/myEcharts/MyEcharts'
 import Round from './pages/myEcharts/Round'
 import ProductDetail from './pages/product/myTable/productDetail/ProductDetail'
-
+import Layout from './pages/layout/Layout.jsx'
 class App extends Component {
     state = {}
 
@@ -43,6 +43,7 @@ class App extends Component {
                             <Route path='detail' component={ProductDetail}></Route>
                         </Route>
                         <Route path='whatever' component={Whatever}></Route>
+                        <Route path='layout' component={Layout}></Route>
                     </Route>
                 </Route>
             </Router>

@@ -17,6 +17,7 @@
     "jsonp": "^0.2.1",
     "less": "^3.11.3",
     "less-loader": "^6.1.2",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-amap": "^1.2.8",
     "react-dom": "^16.13.1",
@@ -31,9 +32,6 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
